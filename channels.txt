@@ -1,6 +1,0 @@
-{
-  "channels": [
-    "http://google.com",
-    "http://youtube.com"
-  ]
-}
