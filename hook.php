@@ -1,23 +1,20 @@
 <?php
 
-require __DIR__ . '/api/autoload.php';
-require __DIR__ . '/config.php';
-
-$bot_api_key  = $config['token'];
-$bot_username = $config['username'];
+require_once __DIR__ . '/api/autoload.php';
+require_once __DIR__ . '/config.php';
 
 try {
 
-    $telegram = new Longman\TelegramBot\Telegram($bot_api_key, $bot_username);
-    $telegram->handle();
+    $bot = new \TelegramBot\Api\Client( $config['token'] );
 
-    $result = Request::sendMessage([
-    'chat_id' => $chat_id,
-    'text'    => 'Your utf8 text 😜 ...',
-]);
+    $bot->command('ping', function ($message) use ($bot) {
+        $bot->sendMessage($message->getChat()->getId(), 'pong!');
+    });
 
-} catch (Longman\TelegramBot\Exception\TelegramException $e) {
+    $bot->run();
 
-    echo $e->getMessage();
+} catch (\TelegramBot\Api\Exception $e) {
+
+    $e->getMessage();
 
 }
