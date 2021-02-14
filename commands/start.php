@@ -1,7 +1,5 @@
 <?php
 
-require_once __DIR__ . '/api/telegram/autoload.php';
-
 namespace Longman\TelegramBot\Commands\SystemCommands;
 
 use Longman\TelegramBot\Commands\SystemCommand;
