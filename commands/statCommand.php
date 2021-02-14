@@ -24,8 +24,9 @@ class StatCommand extends UserCommand
         $stat = [];
 
         $stat[] = '--------------';
-        $stat[] = 'Кол. ссылок для просмотра - ' . count( $database['channels'] );
+        $stat[] = 'Ссылок для просмотра - ' . count( $database['channels'] );
         $stat[] = 'Лимит просмотров - ' . $database['views'];
+        $stat[] = 'Всего просмотров - ' . array_sum( $database['channels'] );
         $stat[] = '--------------';
 
         foreach ( $database['channels'] as $url => $views ) {
