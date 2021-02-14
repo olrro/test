@@ -19,6 +19,11 @@ try {
 	$telegram = new Telegram( $config['token'], $config['name'] );
 
 	$telegram->enableAdmins( $config['admins'] );
+
+	if ( $telegram->isAdmin() ) {
+		$telegram->addCommandsPath( __DIR__ . '/commands' );
+	}
+
 	$telegram->handle();
 
 } catch (Longman\TelegramBot\Exception\TelegramException $e) {
