@@ -29,7 +29,7 @@ class StatCommand extends UserCommand
         $stat[] = '--------------';
 
         foreach ( $database['channels'] as $url => $views ) {
-          $stat[] = $url . ' (' . $views . ')';
+          $stat[] = $url . ' (' . $views . ' просм.)';
         }
 
         $this->replyToChat( 'Статистика:' );
