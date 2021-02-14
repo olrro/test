@@ -9,12 +9,10 @@ require_once __DIR__ . '/config.php';
 Predis\Autoloader::register();
 
 $redis = new Predis\Client( $_ENV['REDIS_URL'] );
+$database = $redis->get( 'database' );
 
-$channels = $redis->get( 'channels' );
-
-if ( empty( $channels ) ) {
-  $channels = [];
-}
+if ( empty( $database['channels'] ) ) $database['channels'] = [];
+if ( empty( $database['views'] ) ) $database['views'] = 1500;
 
 try {
 
@@ -30,3 +28,5 @@ try {
 	var_dump($e);
 
 }
+
+$redis->set( 'database', json_encode( $database ) );
