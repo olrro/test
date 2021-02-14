@@ -1,18 +1,17 @@
 <?php
 
-require_once __DIR__ . '/api/telegram/autoload.php';
-require_once __DIR__ . '/bot.config.php';
+use Longman\TelegramBot\Telegram;
+use Longman\TelegramBot\TelegramLog;
 
-$bot_api_key  = $config['token'];
-$bot_username = $config['username'];
-$hook_url = $config['url'] . 'bot.hook.php';
+require_once __DIR__ . '/vendor/autoload.php';
+require_once __DIR__ . '/bot.config.php';
 
 try {
 
-    $telegram = new Longman\TelegramBot\Telegram($bot_api_key, $bot_username);
-    $result = $telegram->setWebhook($hook_url);
+    $telegram = new Longman\TelegramBot\Telegram( $config['token'], $config['username'] );
+    $result = $telegram->setWebhook( $config['url'] . 'bot.hook.php' );
 
-    if ($result->isOk()) {
+    if ( $result->isOk() ) {
         echo $result->getDescription();
     }
 
