@@ -8,6 +8,8 @@
 		"ext-fileinfo": "*",
 		"ext-exif": "*",
 		"ext-openssl": "*",
-		"ext-zip": "*"
+		"ext-zip": "*",
+        "longman/telegram-bot": "^0.70.1",
+        "predis/predis": "^1.1"
     }
 }
