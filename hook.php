@@ -8,26 +8,21 @@ require_once __DIR__ . '/api/predis/autoload.php';
 require_once __DIR__ . '/api/telegram/autoload.php';
 require_once __DIR__ . '/config.php';
 
-try {
+Predis\Autoloader::register();
 
-    Predis\Autoloader::register();
+var_dump($_ENV);
+echo getenv( 'REDIS_URL' );
 
-    $redis = new Predis\Client( getenv( 'REDIS_URL' ) );
-    $redis->set( 'dick', 'pick' );
+$redis = new Predis\Client( getenv( 'REDIS_URL' ) );
+$redis->set( 'dick', 'pick' );
 
-    echo $redis->get('dick');
+echo $redis->get('dick');
 
-    $bot = new \TelegramBot\Api\Client( $config['token'] );
+$bot = new \TelegramBot\Api\Client( $config['token'] );
 
-    $bot->command( 'dump', function ( $message ) use ( $bot ) {
-      $bot->sendMessage( $message->getFrom()->getId(), $bot->getRawBody() );
-      $bot->sendMessage( $message->getFrom()->getId(), $redis->get('dick') );
-    });
+$bot->command( 'dump', function ( $message ) use ( $bot ) {
+  $bot->sendMessage( $message->getFrom()->getId(), $bot->getRawBody() );
+  $bot->sendMessage( $message->getFrom()->getId(), $redis->get('dick') );
+});
 
-    $bot->run();
-
-} catch (\Exception $e) {
-
-    echo $e->getMessage();
-
-}
+$bot->run();
