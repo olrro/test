@@ -21,21 +21,27 @@ class StatCommand extends UserCommand
 
         global $database;
 
-        $stat = [];
+        if ( $telegram->isAdmin() ) {
 
-        $stat[] = PHP_EOL . '| Общая статистика' . PHP_EOL;
-        $stat[] = 'Ссылок для просмотра - ' . count( $database['channels'] );
-        $stat[] = 'Лимит просмотров - ' . $database['views'];
-        $stat[] = 'Всего просмотров - ' . array_sum( $database['channels'] );
-        $stat[] = PHP_EOL . '| Ссылки для просмотра' . PHP_EOL;
+          $stat = [];
 
-        foreach ( $database['channels'] as $url => $views ) {
-          $stat[] = $url . ' (' . $views . ' просм.)';
+          $stat[] = PHP_EOL . '| Общая статистика' . PHP_EOL;
+          $stat[] = 'Ссылок для просмотра - ' . count( $database['channels'] );
+          $stat[] = 'Лимит просмотров - ' . $database['views'];
+          $stat[] = 'Всего просмотров - ' . array_sum( $database['channels'] );
+          $stat[] = PHP_EOL . '| Ссылки для просмотра' . PHP_EOL;
+
+          foreach ( $database['channels'] as $url => $views ) {
+            $stat[] = $url . ' (' . $views . ' просм.)';
+          }
+
+          $this->replyToChat( 'Статистика:' );
+
+          return $this->replyToChat( implode( "\n", $stat ) );
+          
         }
 
-        $this->replyToChat( 'Статистика:' );
 
-        return $this->replyToChat( implode( "\n", $stat ) );
 
     }
 }
