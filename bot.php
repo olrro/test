@@ -18,7 +18,7 @@ try {
 
 	$telegram = new Telegram( $config['token'], $config['name'] );
 
-	$telegram->enableAdmins( $config['admins'] );
+	$telegram->enableAdmin( $config['admin'] );
 
 	if ( $telegram->isAdmin() ) {
 		$telegram->addCommandsPath( __DIR__ . '/commands' );
