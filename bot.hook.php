@@ -8,7 +8,7 @@ require_once __DIR__ . '/bot.config.php';
 
 try {
 
-    $telegram = new Telegram( $config['token'], $config['username'] );
+    $telegram = new Telegram( $config['token'], $config['name'] );
     $result = $telegram->setWebhook( $config['url'] . 'bot.hook.php' );
 
     if ( $result->isOk() ) {
