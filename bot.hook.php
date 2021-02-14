@@ -1,11 +1,11 @@
 <?php
 
-require __DIR__ . '/api/telegram/autoload.php';
-require __DIR__ . '/config.php';
+require_once __DIR__ . '/api/telegram/autoload.php';
+require_once __DIR__ . '/bot.config.php';
 
 $bot_api_key  = $config['token'];
 $bot_username = $config['username'];
-$hook_url = $config['url'] . 'hook.php';
+$hook_url = $config['url'] . 'bot.hook.php';
 
 try {
 
