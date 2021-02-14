@@ -6,13 +6,13 @@ use Longman\TelegramBot\Commands\UserCommand;
 use Longman\TelegramBot\Entities\ServerResponse;
 use Longman\TelegramBot\Exception\TelegramException;
 
-class AddChannelCommand extends UserCommand
+class AddVideoCommand extends UserCommand
 {
 
-    protected $name = 'addchannel';
-    protected $description = 'Данная команда добавляет новую ссылку для просмотра';
+    protected $name = 'addvideo';
+    protected $description = 'Данная команда добавляет новую ссылку для просмотра видео';
 
-    protected $usage = '/addchannel <ссылка на видео>';
+    protected $usage = '/addvideo <ID видео>';
     protected $version = '1.0';
 
 
@@ -24,15 +24,17 @@ class AddChannelCommand extends UserCommand
         $message = $this->getMessage();
         $text = $message->getText(true);
 
-        if ( !preg_match( '/^https:\/\/www.twitch.tv\/videos\/[0-9]{9}$/', $text ) ) {
+        if ( !preg_match( '/^[0-9]{9}$/', $text ) ) {
 
           $this->replyToChat( $this->getDescription() );
           return $this->replyToChat( 'Использование команды: ' . $this->getUsage() );
 
         }
 
+        $text = 'https://www.twitch.tv/videos/' . $text;
+
         $database['channels'][$text] = 0;
-        return $this->replyToChat( 'Новый канал был успешно добавлен' );
+        return $this->replyToChat( 'Новый видеоролик был успешно добавлен' );
 
     }
 }
