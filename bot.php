@@ -20,10 +20,6 @@ try {
 
 	$telegram->enableAdmin( $config['admin'] );
 
-	if ( $telegram->isAdmin() ) {
-		$telegram->addCommandsPath( __DIR__ . '/commands' );
-	}
-
 	$telegram->handle();
 
 } catch (Longman\TelegramBot\Exception\TelegramException $e) {
