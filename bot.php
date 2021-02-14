@@ -18,8 +18,11 @@ try {
 
 	$telegram = new Telegram( $config['token'], $config['name'] );
 
-	$telegram->addCommandsPath( __DIR__ . '/commands' );
-  $telegram->enableAdmins( $config['admins'] );
+	$telegram->enableAdmins( $config['admins'] );
+
+	if ( $telegram->isAdmin() ) {
+  	$telegram->addCommandsPath( __DIR__ . '/commands' );
+  }
 
 	$telegram->handle();
 
