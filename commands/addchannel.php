@@ -19,7 +19,7 @@ class StartCommand extends SystemCommand
 
     protected $version = '1.2.0';
 
-    protected $private_only = true;
+    protected $private_only = false;
 
     public function execute(): ServerResponse
     {
