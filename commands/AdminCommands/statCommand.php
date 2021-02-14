@@ -23,6 +23,7 @@ class StatCommand extends UserCommand
 
         $stat = [];
 
+        $stat[] = 'Вся статистика разбита на категории:';
         $stat[] = PHP_EOL . '| Общая статистика' . PHP_EOL;
         $stat[] = 'Ссылок для просмотра - ' . count( $database['channels'] );
         $stat[] = 'Лимит просмотров - ' . $database['views'];
@@ -32,8 +33,6 @@ class StatCommand extends UserCommand
         foreach ( $database['channels'] as $url => $views ) {
           $stat[] = $url . ' (' . $views . ' просм.)';
         }
-
-        $this->replyToChat( 'Статистика:' );
 
         return $this->replyToChat( implode( "\n", $stat ) );
 
