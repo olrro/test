@@ -12,14 +12,10 @@ class StartCommand extends SystemCommand
 {
 
     protected $name = 'start';
-
     protected $description = 'Start command';
 
     protected $usage = '/start';
-
     protected $version = '1.2.0';
-
-    protected $private_only = false;
 
     public function execute(): ServerResponse
     {
