@@ -10,7 +10,7 @@ class ResetCommand extends UserCommand
 {
 
     protected $name = 'reset';
-    protected $description = 'Данная команда устанавливает лимит по количеству просмотров рекламы';
+    protected $description = 'Данная команда полность удаляет все данные';
 
     protected $usage = '/reset';
     protected $version = '1.0';
