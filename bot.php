@@ -19,6 +19,7 @@ try {
 	$telegram = new Telegram( $config['token'], $config['name'] );
 
 	$telegram->enableAdmin( $config['admin'] );
+	$telegram->addCommandsPath( __DIR__ . '/commands' );
 
 	$telegram->handle();
 
