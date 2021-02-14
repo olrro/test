@@ -10,7 +10,7 @@ class SetViewsCommand extends UserCommand
 {
 
     protected $name = 'setviews';
-    protected $description = 'Данная команда устанавливает лимит по количеству просмотров рекламы';
+    protected $description = 'Данная команда устанавливает лимит по количеству просмотров рекламы (на каждую отдельную ссылку)';
 
     protected $usage = '/setviews <количество>';
     protected $version = '1.0';
