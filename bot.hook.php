@@ -9,7 +9,7 @@ require_once __DIR__ . '/bot.config.php';
 try {
 
     $telegram = new Telegram( $config['token'], $config['name'] );
-    $result = $telegram->setWebhook( $config['url'] . 'bot.hook.php' );
+    $result = $telegram->setWebhook( $config['url'] . 'bot.php' );
 
     if ( $result->isOk() ) {
         echo $result->getDescription();
