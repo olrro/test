@@ -8,21 +8,29 @@ require_once __DIR__ . '/api/predis/autoload.php';
 require_once __DIR__ . '/api/telegram/autoload.php';
 require_once __DIR__ . '/config.php';
 
+use Longman\TelegramBot\Telegram;
+use Longman\TelegramBot\TelegramLog;
+
 Predis\Autoloader::register();
 
-var_dump($_ENV);
-echo getenv( 'REDIS_URL' );
+$redis = new Predis\Client( $_ENV['REDIS_URL'] );
 
-$redis = new Predis\Client( getenv( 'REDIS_URL' ) );
-$redis->set( 'dick', 'pick' );
+$channels = $redis->get( 'channels' );
 
-echo $redis->get('dick');
+if ( empty( $channels ) ) {
+  $channels = [];
+}
 
-$bot = new \TelegramBot\Api\Client( $config['token'] );
 
-$bot->command( 'dump', function ( $message ) use ( $bot ) {
-  $bot->sendMessage( $message->getFrom()->getId(), $bot->getRawBody() );
-  $bot->sendMessage( $message->getFrom()->getId(), $redis->get('dick') );
-});
+try {
 
-$bot->run();
+	$telegram = new Telegram( $config['token'], $config['name'] );
+
+	$telegram->addCommandsPath( __DIR__ . "/commands" );
+	$telegram->handle();
+
+} catch (Longman\TelegramBot\Exception\TelegramException $e) {
+
+	var_dump($e);
+
+}
