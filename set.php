@@ -1,6 +1,6 @@
 <?php
 
-require __DIR__ . '/api/autoload.php';
+require __DIR__ . '/api/telegram/autoload.php';
 require __DIR__ . '/config.php';
 
 $bot_api_key  = $config['token'];
